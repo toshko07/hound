@@ -19,7 +19,20 @@ class GitHubApi
   end
 
   def repos
-    client.repos
+    installations = client.find_user_installations[:installations]
+
+    if installations.present?
+      installations.flat_map do |installation|
+        id = installation[:id]
+        client.find_installation_repositories_for_user(id)[:repositories]
+      end
+    else
+      begin
+        client.repos
+      rescue Octokit::Forbidden
+        []
+      end
+    end
   end
 
   def repo(repo_name)

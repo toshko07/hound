@@ -17,14 +17,12 @@ class GitHubEventsController < ApplicationController
           marketplace_plan_id: event["marketplace_purchase"]["plan"]["id"],
         )
       when "cancelled"
-        owner.update!(
-          marketplace_plan_id: nil,
-        )
+        owner.update!(marketplace_plan_id: nil)
       else
         raise "Unknown GitHub Marketplace action (#{action})"
       end
     else
-      raise "Unknown GitHub event (#{event_type})"
+      Rails.logger.info("Received GitHub event -- #{event_type}")
     end
 
     head :ok
@@ -64,7 +62,12 @@ class GitHubEventsController < ApplicationController
     Owner.upsert(
       github_id: event["marketplace_purchase"]["account"]["id"],
       name: event["marketplace_purchase"]["account"]["login"],
-      organization: event["marketplace_purchase"]["account"]["type"] == GitHubApi::ORGANIZATION_TYPE,
+      organization: organization_event?(event)
     )
+  end
+
+  def organization_event?(event)
+    account_type = event["marketplace_purchase"]["account"]["type"]
+    account_type == GitHubApi::ORGANIZATION_TYPE
   end
 end

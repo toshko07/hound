@@ -16,10 +16,6 @@ class BuildsController < ApplicationController
 
   private
 
-  def force_https?
-    false
-  end
-
   def ignore_confirmation_pings
     if payload.ping?
       head :ok

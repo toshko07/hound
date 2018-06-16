@@ -38,9 +38,7 @@ class User < ApplicationRecord
   end
 
   def has_marketplace_repos?
-    repos.joins(:owner).where.not(
-      owners: { marketplace_plan_id: nil },
-    ).any?
+    repos.joins(:owner).where.not(owners: { marketplace_plan_id: nil }).any?
   end
 
   def billable_email
