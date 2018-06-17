@@ -57,17 +57,18 @@
   },
   "devDependencies": {
     "babel-eslint": "^7.1.0",
-    "babel-jest": "^20.0.3",
-    "enzyme": "^2.9.1",
-    "enzyme-to-json": "^1.4.4",
+    "babel-jest": "^23.0.1",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-to-json": "^3.3.4",
     "eslint": "^3.10.1",
     "eslint-config-airbnb": "^13.0.0",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^2.2.3",
     "eslint-plugin-react": "^6.7.1",
     "identity-obj-proxy": "^3.0.0",
-    "jest": "^17.0.3",
-    "jest-enzyme": "^2.0.0",
+    "jest": "^23.1.0",
+    "jest-enzyme": "^6.0.1",
     "react-test-renderer": "^15.6.1",
     "react-transform-hmr": "^1.0.2",
     "sinon": "^1.17.6",
@@ -84,7 +85,7 @@
     "setupFiles": [
       "./app/javascript/__tests__/jestsetup.js"
     ],
-    "setupTestFrameworkScriptFile": "node_modules/jest-enzyme/lib/index.js",
+    "setupTestFrameworkScriptFile": "<rootDir>app/javascript/__tests__/jestsetup.js",
     "unmockedModulePathPatterns": [
       "react",
       "enzyme",
