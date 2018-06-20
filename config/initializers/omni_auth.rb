@@ -10,6 +10,7 @@ Rails.application.config.middleware.use OmniAuth::Builder do
     :github,
     Hound::GITHUB_CLIENT_ID,
     Hound::GITHUB_CLIENT_SECRET,
-    setup: setup
+    setup: setup,
+    provider_ignores_state: true,
   )
 end

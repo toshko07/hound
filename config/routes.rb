@@ -10,7 +10,7 @@ Houndapp::Application.routes.draw do
 
   mount Resque::Server, at: "/queue"
 
-  get "/auth/github/callback", to: "sessions#create", as: :github_auth_callback
+  get "/auth/github/callback", to: "sessions#create"
   get "/sign_out", to: "sessions#destroy"
   get "/configuration", to: "pages#configuration"
   get "/faq", to: redirect(ENV.fetch("FAQ_URL"), status: 302)

@@ -6,10 +6,8 @@ class GitHubAuthOptions
   def to_hash
     if @request.params["access"] == "full"
       { scope: "repo,user:email" }
-    elsif @request.params["access"] == "public"
-      { scope: "public_repo,user:email" }
     else
-      {}
+      { scope: "public_repo,user:email" }
     end
   end
 end

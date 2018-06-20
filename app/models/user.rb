@@ -45,10 +45,6 @@ class User < ApplicationRecord
     payment_gateway_customer.email
   end
 
-  def has_repos_with_missing_information?
-    repos.where("in_organization IS NULL OR private IS NULL").count > 0
-  end
-
   def has_active_repos?
     active_repos.count > 0
   end

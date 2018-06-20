@@ -35,12 +35,9 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate
+    session[:installation_id] = params[:installation_id]
     unless signed_in?
-      if params[:installation_id]
-        redirect_to "/auth/github?access=app"
-      else
-        redirect_to "/auth/github?access=public"
-      end
+      redirect_to "/auth/github"
     end
   end
 
