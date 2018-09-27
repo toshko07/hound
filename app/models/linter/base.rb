@@ -73,5 +73,9 @@ module Linter
         owner: owner,
       )
     end
+
+    def version
+      hound_config.linter_version(name)
+    end
   end
 end

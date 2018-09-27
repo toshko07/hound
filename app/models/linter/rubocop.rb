@@ -5,7 +5,13 @@ module Linter
     private
 
     def job_class
-      LintersJob
+      case version.presence
+      when "0.59.2"
+        # AlmondJoy? Antelope?
+        LintersV2Job
+      else
+        LintersJob
+      end
     end
   end
 end
